@@ -21,6 +21,7 @@ setup(
     url="http://github.com/edgaraafelix/pdfjinjax/",
     description='Use jinja templates to fill and sign PDF forms, based on rammie/pdfjinja with a few enhancements.',
     long_description=readme,
+    long_description_content_type='text/markdown',
     py_modules=["pdfjinjax"],
     entry_points={"console_scripts": ["pdfjinjax = pdfjinjax:main"]},
     install_requires=[
