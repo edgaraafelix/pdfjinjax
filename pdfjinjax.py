@@ -123,7 +123,7 @@ class Attachment(object):
         return PdfFileReader(stream).getPage(0)
 
 
-class PdfJinjaX(object):
+class PdfJinja(object):
 
     Attachment = Attachment
 
@@ -305,7 +305,7 @@ def parse_args(description):
 def main():
     logging.basicConfig()
     args = parse_args(__doc__)
-    pdfparser = PdfJinjaX(args.pdf)
+    pdfparser = PdfJinja(args.pdf)
     pages = args.page and args.page.split(",")
 
     import json

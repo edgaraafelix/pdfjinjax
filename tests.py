@@ -10,7 +10,7 @@ except ImportError:
 import sys
 import unittest
 
-from pdfjinjax import Attachment, PdfJinjaX
+from pdfjinjax import Attachment, PdfJinja
 
 
 class PdfJinjaTestCase(unittest.TestCase):
@@ -26,7 +26,7 @@ class PdfJinjaTestCase(unittest.TestCase):
         self.attachments = [
             Attachment(**kwargs) for kwargs in self.data.pop("attachments")
         ]
-        self.pdfjinjax = PdfJinjaX(pdffile)
+        self.pdfjinjax = PdfJinja(pdffile)
 
     def tearDown(self):
         del self.data
