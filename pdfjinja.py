@@ -58,10 +58,13 @@ class Attachment(object):
 
     fontsize = 12
 
-    def __init__(self, data, dimensions=None, text=None, font=None):
+    def __init__(self, data, dimensions=None, text=None, font=None, ratio=False):
         img = Image.open(data)
         self.img = img
         self.dimensions = dimensions or (0, 0, img.size[0], img.size[1])
+
+        if ratio:
+            self.dimensions = self.ratio(img, dimensions)
 
         if img.mode == "RGBA":
             self.img = Image.new("RGB", img.size, (255, 255, 255))
@@ -85,6 +88,25 @@ class Attachment(object):
             for (lw, lh), line in zip(dims, lines):
                 draw.text((0, y), line, (0, 0, 0), font=font)
                 y += lh
+
+    def ratio(img, dimensions):
+        x, y, w, h = dimensions
+        imgW, imgH = img.size
+        imageRatio = float(imgH)/float(imgW)
+        pdfFieldRatio = float(h)/float(w)
+        centerX = x
+        centerY = y
+        if imageRatio > pdfFieldRatio: 
+            resizeImgW = imgW * (h/imgH)               
+            resizeImgH = h         
+            marginW = (w - resizeImgW)/2.0
+            centerX = x + marginW
+        elif imageRatio < pdfFieldRatio:
+            resizeImgH = imgH * (w/imgW)         
+            resizeImgW = w
+            marginH = (h - resizeImgH)/2.0
+            centerY = y + marginH
+        return (centerX, centerY, resizeImgW, resizeImgH)
 
     def pdf(self):
         stream = BytesIO()
@@ -128,7 +150,7 @@ class PdfJinjaX(object):
         rect = self.context["rect"]
         x, y = rect[0], rect[1]
         w, h = rect[2] - x, rect[3] - y
-        pdf = self.Attachment(data, dimensions=(x, y, w, h)).pdf()
+        pdf = self.Attachment(data, dimensions=(x, y, w, h), ratio=True).pdf()
         self.watermarks.append((self.context["page"], pdf))
         return " "
 
