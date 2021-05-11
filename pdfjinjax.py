@@ -89,7 +89,7 @@ class Attachment(object):
                 draw.text((0, y), line, (0, 0, 0), font=font)
                 y += lh
 
-    def ratio(img, dimensions):
+    def ratio(self, img, dimensions):
         x, y, w, h = dimensions
         imgW, imgH = img.size
         imageRatio = float(imgH)/float(imgW)
