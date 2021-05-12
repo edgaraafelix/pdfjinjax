@@ -15,7 +15,7 @@ f.close()
 
 setup(
     name="pdfjinjax",
-    version="1.2.1",
+    version="1.2.2",
     author="Edgar Felix",
     author_email="eaafelix@gmail.com",
     url="http://github.com/edgaraafelix/pdfjinjax/",
