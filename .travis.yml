@@ -1,0 +1,21 @@
+language: python
+sudo: false
+python:
+  - 2.7
+  - 3.5
+  - 3.6
+  - 3.7
+addons:
+  apt:
+    packages:
+      - tk8.5-dev
+      - tcl8.5-dev
+      - python-tk
+      - liblcms2-dev
+      - libjpeg8-dev
+      - zlib1g-dev
+      - libfreetype6-dev
+      - libmagickwand-dev
+      - pdftk
+install: pip install .
+script: python tests.py
