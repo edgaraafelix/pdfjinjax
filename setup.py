@@ -23,7 +23,7 @@ setup(
     long_description=readme,
     long_description_content_type='text/markdown',
     py_modules=["pdfjinjax"],
-    entry_points={"console_scripts": ["pdfjinjax = pdfjinja:main"]},
+    entry_points={"console_scripts": ["pdfjinjax = pdfjinjax:main"]},
     install_requires=[
         "fdfgen>=0.13.0",
         "jinja2>=2.8",
